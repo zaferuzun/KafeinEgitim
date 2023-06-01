@@ -1,29 +1,25 @@
 package com.kafein;
 
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Locale;
 
-public class Main {
+public class Genisbant {
 
     public static void main(String[] args) throws IOException {
 //        String str = "INSERT INTO ZUZUN.HATA_MESAJLARI (CEVAP_KODU , BOHM_CODE , KULLANICI_MESAJI , CLASS_NAME , METHOD_NAME )VALUES ('null', 'FATC002', 'Lütfen girdiğiniz irtibat gsm numaranızı kontrol ediniz.','FaturaController', ' faturaGonderimSekliDegistir');";
 //        for (int i=0;i<str.length();i++){
 //            System.out.println(i+ " " + str.charAt(i));
 //        }
-        File file = new File("C:\\Users\\Kafein\\Desktop\\kurumsal-iyilestirmeler - Kopya.xlsx");
+        File file = new File("C:\\Users\\Kafein\\Desktop\\gb-iyileştirme\\gb-iyilestirme - Kopya.xlsx");
         FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file
 //creating Workbook instance that refers to .xlsx file
         XSSFWorkbook wb = new XSSFWorkbook(fis);
@@ -49,15 +45,11 @@ public class Main {
                     default:
                 }
                 if (i==0){
-                    hatalar.setCevap_kodu(value);
+                    hatalar.setMessage_code(value);
                 }else if (i==1){
-                    hatalar.setBohm_kodu(value);
+                    hatalar.setMessage(value);
                 }else if (i==2){
-                    hatalar.setMesaj(value);
-                }else if (i==3){
-                    hatalar.setClassname(value);
-                }else if (i==4){
-                    hatalar.setMethotname(value);
+                    hatalar.setPage_map(value);
                 }
                 i++;
             }
@@ -67,79 +59,56 @@ public class Main {
         String str2= null;
 
         for (Hatalar hata:hatalarArrayList
-             ) {
-            String cevapkodu= hata.getCevap_kodu().toLowerCase(Locale.ROOT).equals("null")?"":hata.getCevap_kodu().trim();
-            String bohmkodu= hata.getBohm_kodu().toLowerCase(Locale.ROOT).equals("null")?"":hata.getBohm_kodu().trim();
-            cevapkodu= cevapkodu.equals("\"00\"")?"00":cevapkodu;
-            bohmkodu= bohmkodu.equals("\"00\"")?"00":bohmkodu;
-            String classname = hata.getClassname().trim();
-            String methotname = hata.getMethotname().trim();
+        ) {
 
-            String insert = "INSERT INTO ZUZUN.HATA_MESAJLARI (CEVAP_KODU , BOHM_CODE , KULLANICI_MESAJI , CLASS_NAME , METHOD_NAME )VALUES ('"+cevapkodu
-                    +"', '"+bohmkodu+"', '"+hata.getMesaj()+"','"+classname+"', '"+methotname+"');";
+            String msg_id= "MESSAGE_PROPERTIES_SEQ.NEXTVAL";
+            String message_code = hata.getMessage_code().trim();
+            String message = hata.getMessage().trim();
+            String page_map = hata.getPage_map().trim();
+
+            String insert = "INSERT INTO MESSAGE_PROPERTIES" +
+                    "   (MSG_PROP_ID, MESSAGE_CODE, MESSAGE, PAGE_MAP)" +
+                    "Values("+msg_id
+                    +", '"+message_code+"','"+message+"', '"+page_map+"');";
             System.out.println(insert);
         }
     }
     static class Hatalar{
-        String cevap_kodu;
-        String bohm_kodu;
-        String classname;
-        String mesaj;
-        String methotname;
+        String message_code;
+        String message;
+        String page_map;
 
-        public String getCevap_kodu() {
-            return cevap_kodu;
+        public String getMessage_code() {
+            return message_code;
         }
 
-        public void setCevap_kodu(String cevap_kodu) {
-            this.cevap_kodu = cevap_kodu;
+        public void setMessage_code(String message_code) {
+            this.message_code = message_code;
         }
 
-        public String getBohm_kodu() {
-            return bohm_kodu;
+        public String getMessage() {
+            return message;
         }
 
-        public void setBohm_kodu(String bohm_kodu) {
-            this.bohm_kodu = bohm_kodu;
+        public void setMessage(String message) {
+            this.message = message;
         }
 
-        public String getClassname() {
-            return classname;
+        public String getPage_map() {
+            return page_map;
         }
 
-        public void setClassname(String classname) {
-            this.classname = classname;
-        }
-
-        public String getMesaj() {
-            return mesaj;
-        }
-
-        public void setMesaj(String mesaj) {
-            this.mesaj = mesaj;
-        }
-
-        public String getMethotname() {
-            return methotname;
-        }
-
-        public void setMethotname(String methotname) {
-            this.methotname = methotname;
+        public void setPage_map(String page_map) {
+            this.page_map = page_map;
         }
 
         @Override
         public String toString() {
             return "Hatalar{" +
-                    "cevap_kodu='" + cevap_kodu + '\'' +
-                    ", bohm_kodu='" + bohm_kodu + '\'' +
-                    ", classname='" + classname + '\'' +
-                    ", mesaj='" + mesaj + '\'' +
-                    ", methotname='" + methotname + '\'' +
+                    "message_code='" + message_code + '\'' +
+                    ", message='" + message + '\'' +
+                    ", page_map='" + page_map + '\'' +
                     '}';
         }
     }
-
 }
-
-
-
