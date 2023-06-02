@@ -43,7 +43,6 @@ public class StreamGiris {
 
         Arrays.stream(arr).forEach(System.out::println);
     }
-
     public static void intStreamOrnek2(){
         //IntStreamOrnek //DoubleStream // LongStream
 
@@ -101,7 +100,6 @@ public class StreamGiris {
         }
 
     }
-
     public static void streamAcikBirakilirsa(){
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("a");

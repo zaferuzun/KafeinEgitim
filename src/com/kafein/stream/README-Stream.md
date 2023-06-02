@@ -31,6 +31,9 @@ Giriş: Stream Kütüphanesi ve Örnekleri
 
 
 ![Stream hayat-döngüsü](../image/stream-hayat-dongusu.png "Hayat Döngüsü")
+
+![stream-islemler](../image/islemler.png "İslemler")
+
     
 ### Ara İşlemler
 -   Ara işlemler (intermediate operations), akışlar üzerinde tanımlanmış ve
@@ -64,19 +67,17 @@ Giriş: Stream Kütüphanesi ve Örnekleri
 ### SORTED
 #### Elimizde ki veri setini belirli bir parametreye göre sıralamak isteyebiliriz. 2 türü bulunmaktadır. Birinci hali parametre almaz küçükten büyüğe şekilde sıralar. İkinci formatı ise Comparator arayüzünden türediği için bizim belirlemiş olduğumuz parametreye göre sıralama işlemi yapar.
 
-### Filter****peek
-#### Belirteceğimiz koşullar doğrultusunda filtreleme işlemi yapmamıza yarayan bir yapıdır. Predicate arayüzünden türüyen bir parametre bekler. Bu işlem sonrası belirttiğimiz koşula uygun olmayan elemanlar bir sonraki aşamada kullanılamazlar. Artık elimizde filtrelenmiş/süzülmüş/elenmiş bir veri vardır.
+### Peek
+#### Bu yöntem, temel olarak, öğeleri bir işlem hattında belirli bir noktadan geçerken görmek istediğiniz hata ayıklamayı desteklemek için vardır.
 
 ### DISTINCT
 #### Stream içerisinde bulunan ve tekrar eden elemanlar varsa bunları distinct metodu ile çıkartabilir ve elimizde tekrar etmeyen birbirinden farklı elemanlar barından bir veri setimiz kalır.
 
-### Filter****LIMIT
-#### Belirteceğimiz koşullar doğrultusunda filtreleme işlemi yapmamıza yarayan bir yapıdır. Predicate arayüzünden türüyen bir parametre bekler. Bu işlem sonrası belirttiğimiz koşula uygun olmayan elemanlar bir sonraki aşamada kullanılamazlar. Artık elimizde filtrelenmiş/süzülmüş/elenmiş bir veri vardır.
+### Limit
+#### Bir veri kaynağını, göstermek istediğimiz kadarını göstermemize yarayan, sınırlandıran bir metoddur.
 
-
-### Filter****SKIP
-#### Belirteceğimiz koşullar doğrultusunda filtreleme işlemi yapmamıza yarayan bir yapıdır. Predicate arayüzünden türüyen bir parametre bekler. Bu işlem sonrası belirttiğimiz koşula uygun olmayan elemanlar bir sonraki aşamada kullanılamazlar. Artık elimizde filtrelenmiş/süzülmüş/elenmiş bir veri vardır.
-
+### Skip
+#### Bir akışın ilk n öğesini atan bir ara işlemdir . n parametresi negatif olamaz ve akışın boyutundan büyükse, jump() boş bir akış döndürür.
 
 ### Bitirici İşlem
 -   Ara işlemlerden sonra akışı bitiren, son-bitirici işlem (terminal
@@ -95,14 +96,14 @@ Giriş: Stream Kütüphanesi ve Örnekleri
      8. The max() operation
      9. The reduce() operation
 
-### Filter****allMatch
-#### Belirteceğimiz koşullar doğrultusunda filtreleme işlemi yapmamıza yarayan bir yapıdır. Predicate arayüzünden türüyen bir parametre bekler. Bu işlem sonrası belirttiğimiz koşula uygun olmayan elemanlar bir sonraki aşamada kullanılamazlar. Artık elimizde filtrelenmiş/süzülmüş/elenmiş bir veri vardır.
+### allMatch
+#### Akış içerisinde verilen koşula göre tüm elemanlar eşlenirse true döner.
 
-### Map***anyMatch
-#### Stream içerisinde erişilen her bir eleman üzerinde işlem yapmamıza ve başka elemanlara dönüştürmemize imkan sağlayan map metodu parametre olarak Function arayüzünden türetilmiş bir ifade beklemektedir.
+### anyMatch
+#### Akış içerisinde verilen koşula göre herhangi bir eleman eşlenirse true döner.
 
-### Filter****noneMatch
-#### Belirteceğimiz koşullar doğrultusunda filtreleme işlemi yapmamıza yarayan bir yapıdır. Predicate arayüzünden türüyen bir parametre bekler. Bu işlem sonrası belirttiğimiz koşula uygun olmayan elemanlar bir sonraki aşamada kullanılamazlar. Artık elimizde filtrelenmiş/süzülmüş/elenmiş bir veri vardır.
+### noneMatch
+#### Akış hiçbir elemanın içerisinde verilen koşula uymuyorsa  true döner.
 
 ### SORTED***collect
 #### Elimizde ki veri setini belirli bir parametreye göre sıralamak isteyebiliriz. 2 türü bulunmaktadır. Birinci hali parametre almaz küçükten büyüğe şekilde sıralar. İkinci formatı ise Comparator arayüzünden türediği için bizim belirlemiş olduğumuz parametreye göre sıralama işlemi yapar.
@@ -128,6 +129,8 @@ Giriş: Stream Kütüphanesi ve Örnekleri
 https://www.codejava.net/java-core/collections/java-8-stream-terminal-operations-examples
 https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
 
+SONUÇ
+Ara işlemler öğeleri birer birer alır ve işler. Tüm ara işlemler tembeldir ve sonuç olarak, boru hattı çalışmaya başlayana kadar hiçbir işlemin etkisi olmaz.
 
 
 
