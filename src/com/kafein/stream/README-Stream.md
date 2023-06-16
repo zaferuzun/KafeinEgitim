@@ -44,7 +44,6 @@ Giriş: Stream Kütüphanesi ve Örnekleri
     elemanlar üretebilir ya da hesaplamalar yoluyla sonuçlar çıkarabilir
     ama elemanların kendisini değiştirmez
     
-    https://farukgenc.com/java/java-8-yenilikleri-bolum-3.html
 1. Ara Elemanlar
    1. filter(Predicate<T>)
    2. map(Function<T>) (mapToInt,mapToLong,mapToDouble)
@@ -105,32 +104,52 @@ Giriş: Stream Kütüphanesi ve Örnekleri
 ### noneMatch
 #### Akış hiçbir elemanın içerisinde verilen koşula uymuyorsa  true döner.
 
-### SORTED***collect
-#### Elimizde ki veri setini belirli bir parametreye göre sıralamak isteyebiliriz. 2 türü bulunmaktadır. Birinci hali parametre almaz küçükten büyüğe şekilde sıralar. İkinci formatı ise Comparator arayüzünden türediği için bizim belirlemiş olduğumuz parametreye göre sıralama işlemi yapar.
+### Collect
+####  Stream türündeki nesneleri başka biçimdeki nesneye, veri yapısına dönüştürmek için kullanılır. Collector arayüzünden türeyen bir parametre beklemektedir.
 
-### Filter****count
-#### Belirteceğimiz koşullar doğrultusunda filtreleme işlemi yapmamıza yarayan bir yapıdır. Predicate arayüzünden türüyen bir parametre bekler. Bu işlem sonrası belirttiğimiz koşula uygun olmayan elemanlar bir sonraki aşamada kullanılamazlar. Artık elimizde filtrelenmiş/süzülmüş/elenmiş bir veri vardır.
+### Count
+#### Akış içerisinde ki öğelerin sayısını döndürür.
 
-### DISTINCT****forEach
-#### Stream içerisinde bulunan ve tekrar eden elemanlar varsa bunları distinct metodu ile çıkartabilir ve elimizde tekrar etmeyen birbirinden farklı elemanlar barından bir veri setimiz kalır.
+### ForEach
+#### Akışın her elemanı için verilecek (Consumer<? super T> action) eylemi gerçekleştirir.
 
-### Filter****min
-#### Belirteceğimiz koşullar doğrultusunda filtreleme işlemi yapmamıza yarayan bir yapıdır. Predicate arayüzünden türüyen bir parametre bekler. Bu işlem sonrası belirttiğimiz koşula uygun olmayan elemanlar bir sonraki aşamada kullanılamazlar. Artık elimizde filtrelenmiş/süzülmüş/elenmiş bir veri vardır.
+### Min
+#### Akışa verilecek Comparator'a (Comparator<? super T> comparator) göre minimum ögesini döndürür.
 
-### Filter****max
-#### Belirteceğimiz koşullar doğrultusunda filtreleme işlemi yapmamıza yarayan bir yapıdır. Predicate arayüzünden türüyen bir parametre bekler. Bu işlem sonrası belirttiğimiz koşula uygun olmayan elemanlar bir sonraki aşamada kullanılamazlar. Artık elimizde filtrelenmiş/süzülmüş/elenmiş bir veri vardır.
+### Max
+#### Akışa verilecek Comparator'a (Comparator<? super T> comparator) göre maximum ögesini döndürür.
 
-### Filter****reduce
-#### Belirteceğimiz koşullar doğrultusunda filtreleme işlemi yapmamıza yarayan bir yapıdır. Predicate arayüzünden türüyen bir parametre bekler. Bu işlem sonrası belirttiğimiz koşula uygun olmayan elemanlar bir sonraki aşamada kullanılamazlar. Artık elimizde filtrelenmiş/süzülmüş/elenmiş bir veri vardır.
-
-
+### Reduce
+####  Teker teker işleme sürecinde, bir önceki adımda elde edilen sonuç bir sonraki adıma girdi olarak sunulmaktadır. Bu sayede yığılmlı bir hesaplama süreci elde edilmiş olmaktadır.
 
 
-https://www.codejava.net/java-core/collections/java-8-stream-terminal-operations-examples
-https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
+##Paralel Stream
+#### Stream arayüzü içindeki metodlardan ardışık işletilmesi gerekmeyenler, istenirse, CPU üzerinde paralel olarak koşturulabilmektedir. Bu sayede CPU çekirdeklerini tam verimli olarak kullanmak mümkün olmaktadır.
 
-SONUÇ
-Ara işlemler öğeleri birer birer alır ve işler. Tüm ara işlemler tembeldir ve sonuç olarak, boru hattı çalışmaya başlayana kadar hiçbir işlemin etkisi olmaz.
+
+## Stream Avantajları
+#### Daha az kod 
+#### Birçok fonksiyonu bulunur ve bunları diledigimiz gibi şekillendirebiliriz
+#### Daha az degişebilirgi temsil eder.
+#### Paralelleştirmeyi kolaylaştırır ve bazı durumlarda performans artışı saglar.
+#### Sistematikleştirme ve mimari yapı kurulmasında tercih sebebi olabilir
+
+## Stream Dezavantajları
+#### Hız ve hafıza tasarrufu açısında kötüdür. (Yerine for tercih sebebidir)
+#### Aşinalık (Streamlerin Java 8 ile gelmiştir lakin for kullanımı her zaman developer için daha aşina gözükür)
+#### Debug (debug yaparken for daha anlaşılır bir performans sunuyor)
+#### Bilişsel ek yük (Sagladıgı esneklik ve soyutlama ile aslında bizi farklı şekilde düşünmeye zorluyor. Bu durum karmaşık durumlarda can sıkıcı olabilir)
+
+## Best Practice
+
+
+
+#Kaynaklar
+#### https://www.codejava.net/java-core/collections/java-8-stream-terminal-operations-examples
+#### https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
+#### https://kodedu.com/2014/10/java-8-stream-api/
+#### https://farukgenc.com/java/java-8-yenilikleri-bolum-3.html
+#### https://howtodoinjava.com/java8/comparator-example-lambda/
 
 
 

@@ -1,9 +1,7 @@
 package com.kafein.stream;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -24,12 +22,15 @@ public class StreamIntermediate {
 
 //        setBookStream(bookArrayList);
 //        mapExample2(bookArrayList);
+//        mapExample3();
 //        mapWithSetBookStream();
         //flatmap()
 //        flatMapExample1();
+//        flatMapExample2();
+
 //        flatMapVsMapExample();
 //        flatMapVsMapExample2();
-        //peek()
+//        peek()
 //        peekExample();
 //        peekExample2();
 //        peekExample3();
@@ -156,20 +157,32 @@ public class StreamIntermediate {
         list.stream().flatMap(num -> Stream.of(num)).
                 forEach(System.out::println);
     }
+    public static  void flatMapExample2(){
+
+        ArrayList<String> arrayList2 = new ArrayList<>();
+        ArrayList<ArrayList<String>> arrayList3 = new ArrayList<>();
+        Stream<ArrayList<String>> streamArrayList2 = arrayList3.stream();
+        Stream<String> stream = streamArrayList2.flatMap(Collection::stream);
+
+    }
     public static void flatMapVsMapExample(){
         //mapExample3();
 
-        //compiler error
         List<List<Integer>> numbers = new ArrayList<>();
         numbers.add(Arrays.asList(1, 2));
         numbers.add(Arrays.asList(3,4,5,6));
         numbers.add(Arrays.asList(7,8,9,0));
-//
+        //compiler error
 //        List<Integer> squares =  numbers.stream().map(i-> i*i).collect(Collectors.toList());
 //        squares.forEach(System.out::println);
         List<Integer> squares = numbers.stream()
                 .flatMap(l -> l.stream())
                 .map(i -> i * i).collect(Collectors.toList());
+
+        //null olursa nasıl kontrol edebiliriz
+//        List<Integer> squares = numbers.stream().filter(Objects::nonNull)
+//                .flatMap(l -> l.stream())
+//                .map(i -> i * i).collect(Collectors.toList());
 
         squares.forEach(System.out::println);
     }
@@ -240,9 +253,11 @@ public class StreamIntermediate {
     authorArrayList.add(author);
 //    List<String> authorBookName = authorArrayList.stream().map((x)->{
 //        return x.getBook().getBookName();
-//    })
+//    });
+//        ArrayList<Book> bookArrayList1= (ArrayList<Book>) authorArrayList.stream().flatMap(x->x.getBook().stream()).collect(Collectors.toList());
+//        List<ArrayList<Book>> bookArrayList2=  authorArrayList.stream().map(x->x.getBook()).collect(Collectors.toList());
 
-//            authorArrayList.stream().flatMap(x->x.getBook().stream()).map(Book::getBookName).forEach(System.out::println);
+//        authorArrayList.stream().flatMap(x->x.getBook().stream()).map(Book::getBookName).forEach(System.out::println);
 //        authorArrayList.stream().flatMap(x->x.getBook().stream()).forEach(System.out::println);
 
     }
@@ -259,23 +274,30 @@ public class StreamIntermediate {
     public static void peekExample2(){
         List<Integer> list
                 = Arrays.asList(0, 2, 4, 6, 8, 10);
-
+        //akış içerisinde ki işlemleri görmek için kullanıldıgı için tek başına bi anlam ifade etmiyor
         list.stream().peek(System.out::println);
 //        list.stream().peek(System.out::println).count();
 
     }
-
     public static void peekExample3(){
         //Alternatif olarak, map() işlevini kullanabilirdik  , ancak öğeyi değiştirmek istemediğimiz için peek() daha uygundur.
 
         Stream<Book> bookStream = Stream.of(new Book("Book1",1), new Book("Book2",2), new Book("Book3",3));
+        bookStream.forEach(x->{
+            System.out.println(x.getName());
+        });
+        System.out.println("--------------------------------------");
+
 //        ArrayList<Book> bookArrayList = (ArrayList<Book>) bookStream.peek(u -> {
 //                    System.out.println(u.getName().toLowerCase());
 //        })
 //                .collect(Collectors.toList());
 //        bookArrayList.stream().map(x->x.getName()).forEach(System.out::println);
 
-        bookStream.peek(u -> u.setName(u.getName().toLowerCase())).forEach(System.out::println);
+//        ArrayList<Book> bookArrayList= (ArrayList<Book>) bookStream.peek(u -> u.setName(u.getName().toLowerCase())).collect(Collectors.toList());
+//        bookArrayList.forEach(x->{
+//            System.out.println(x.getName());
+//        });
         System.out.println("--------------------------------------");
         Stream<Book> bookStream2 = Stream.of(new Book("Book1",1), new Book("Book2",2), new Book("Book3",3));
         bookStream2.map(u->u.getName().toLowerCase())
@@ -290,7 +312,7 @@ public class StreamIntermediate {
     public static void skipExample(){
         //        Stream<Integer> intArray = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-                .skip(11)
+                .skip(5)
                 .forEach(i -> System.out.print(i + " "));
     }
 

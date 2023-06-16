@@ -12,27 +12,29 @@ public class StreamGiris {
         //base stream
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("ddede");
+      //  arrayList.add("deneme");
         arrayList.stream().filter(x->x.equals("deneme")).forEach(s -> System.out.println(s));
         //Akış oluşturma
         Stream<String> streamArrayList = arrayList.stream();
 
         //Ara eleman kısmı, ara elemanlar stream objesini bozmazlar her eklenen ara eleman bir stream objsi oluştururlar
-        //Stream<String> stringStreamList = arrayList.stream().filter(x->x.equals("deneme")).limit(2);
-        //streamArrayList=streamArrayList.sorted();
-        //streamArrayList=streamArrayList.distinct();
+//        Stream<String> stringStreamList = arrayList.stream().filter(x->x.equals("deneme")).limit(2);
+//        streamArrayList=streamArrayList.sorted();
+//        streamArrayList=streamArrayList.distinct();
+//
+//        //Bitirici eleman kısmı bundan sonra akış sonlanacaktır
+//        ArrayList<String> arrayList1= (ArrayList<String>) streamArrayList.collect(Collectors.toList());
+//        ArrayList<String> arrayList2= (ArrayList<String>) streamArrayList.collect(Collectors.toList());
+//        ArrayList<String> arrayList3= (ArrayList<String>) arrayList.stream().filter(x->x.equals("deneme")).collect(Collectors.toList());
+//        arrayList.stream().filter(x->x.equals("deneme")).forEach(s -> System.out.println(s));
 
-        //Bitirici eleman kısmı bundan sonra akış sonlanacaktır
-        //ArrayList<String> arrayList1= (ArrayList<String>) streamArrayList.collect(Collectors.toList());
-        //ArrayList<String> arrayList2= (ArrayList<String>) streamArrayList.collect(Collectors.toList());
-        //ArrayList<String> arrayList1= (ArrayList<String>) arrayList.stream().filter(x->x.equals("deneme")).collect(Collectors.toList());
-        //arrayList.stream().filter(x->x.equals("deneme")).forEach(s -> System.out.println(s)).;
-
+//        streamAcikBirakilirsa();
+//        streamKapatma();
 //        mapGiris();
 //        arrayListGiris();
 //        intStreamOrnek();
 //        intStreamOrnek2();
-//        streamAcikBirakilirsa();
-//        streamKapatma();
+
 
     }
     public static void intStreamOrnek(){
@@ -63,7 +65,7 @@ public class StreamGiris {
         map.put("4",5);
         map.put("5",6);
         Map<String,Integer> map2=map.entrySet().stream().filter(x->x.getValue()>5).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
-        map.entrySet().stream().filter(x->x.getValue()>5).forEach(System.out::println);
+        map2.entrySet().stream().forEach(System.out::println);
     }
     public static void arrayListGiris(){
         ArrayList<String> arrayList1 =new ArrayList<>();
@@ -102,16 +104,18 @@ public class StreamGiris {
     }
     public static void streamAcikBirakilirsa(){
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("a");
-        arrayList.add("b");
         arrayList.add("c");
+        arrayList.add("e");
+        arrayList.add("d");
 
         Stream<String> streamOfArrayList = arrayList.stream();
 
-        System.out.println("collection:" + arrayList);
-        arrayList.add("d");
-        System.out.println("collection:" + arrayList);
+        System.out.println("Base collection:" + arrayList);
+//        streamOfArrayList= streamOfArrayList.filter(x->x.equals("c"));
+//        streamOfArrayList = streamOfArrayList.map(x->x+"deneme");
 
+        arrayList.add("a");
+        System.out.println("Extend collection:" + arrayList);
 
         //kapatılmadı
         System.out.println("streamOfCollection:" + streamOfArrayList.collect(Collectors.toList()));
