@@ -39,7 +39,7 @@ public class StreamTerminal {
 
         //max
 //        maxExample();
-        maxExample2();
+//        maxExample2();
 
         //reduce
 //        reduceExample();

@@ -30,12 +30,12 @@ public class StreamFunction {
 //                Negatif (mevcut nesne
 //                        Sıfır (= 0) => geçerli nesne ve belirtilen nesnenin her ikisi de eşittir.
 
-        comparatorExample();
+//        comparatorExample();
     }
 
     public static void predicateExample(){
         Predicate<Integer> pr = a -> (a > 18); // Creating predicate
-        System.out.println(pr.test(10));    // Calling Predicate method
+        System.out.println(pr.test(20));    // Calling Predicate method
 
     }
     public static void predicateExample2(){

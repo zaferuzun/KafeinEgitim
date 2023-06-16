@@ -142,6 +142,12 @@ Giriş: Stream Kütüphanesi ve Örnekleri
 
 ## Best Practice
 
+#### int, long ve double gibi ilkel türlerle çalışırken Integer, Long ve Double gibi kutulu türlerin akışları yerine IntStream , LongStream ve DoubleStream gibi ilkel akışları kullanın.
+#### Paralel akışları dikkatli kullanın
+#### Stream API, veriler üzerinde işlevsel işlemler gerçekleştirmek için tasarlanmıştır. Öngörülemeyen davranışlara yol açabileceğinden ve kod okunabilirliğini azaltabileceğinden, akışın dışındaki değişkenleri değiştirmek veya G/Ç işlemleri gerçekleştirmek gibi yan etkileri ortaya çıkarmaktan kaçının.
+#### Akışları değişmez nesnelerle kullanın
+#### Yöntem referanslarını lambda ifadelerine tercih edin
+#### Yinelenenleri kaldırmak için distinct() kullanın
 
 
 #Kaynaklar
